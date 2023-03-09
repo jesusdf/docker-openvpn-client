@@ -1,4 +1,7 @@
 # OpenVPN Client for Docker
+
+Forked from https://github.com/wfg/docker-openvpn-client to meet custom needs.
+
 ## What is this and what does it do?
 [`ghcr.io/jesusdf/openvpn-client`](https://github.com/users/jesusdf/packages/container/package/openvpn-client) is a containerized OpenVPN client.
 It has a kill switch built with `iptables` that kills Internet connectivity to the container if the VPN tunnel goes down for any reason.
