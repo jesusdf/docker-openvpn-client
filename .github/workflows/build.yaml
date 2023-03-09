@@ -24,7 +24,7 @@ jobs:
     - id: tags
       uses: docker/metadata-action@v4
       with:
-        images: ghcr.io/wfg/openvpn-client
+        images: ghcr.io/${{ github.repository_owner }}/openvpn-client
         tags: |
           type=semver,pattern={{version}}
           type=semver,pattern={{major}}.{{minor}}
