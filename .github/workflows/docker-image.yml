@@ -30,7 +30,9 @@ jobs:
           file: ./build/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ github.repository_owner }}/docker-openvpn-client:latest
+          tags: 
+            ${{ github.repository_owner }}/docker-openvpn-client:latest
+            ${{ github.repository_owner }}/docker-openvpn-client:${{ github.sha }}
       - name: Update Docker Hub Description
         uses: peter-evans/dockerhub-description@v3
         with:
