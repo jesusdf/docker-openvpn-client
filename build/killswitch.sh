@@ -4,6 +4,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+echo "Enabling killswitch for ${dev}..."
+
 iptables --insert OUTPUT \
     ! --out-interface ${dev} \
     --match addrtype ! --dst-type LOCAL \
