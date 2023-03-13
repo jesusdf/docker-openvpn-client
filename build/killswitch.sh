@@ -5,7 +5,7 @@ set -o nounset
 set -o pipefail
 
 iptables --insert OUTPUT \
-    ! --out-interface tun0 \
+    ! --out-interface ${dev} \
     --match addrtype ! --dst-type LOCAL \
     ! --destination "$(ip -4 -oneline addr show dev eth0 | awk 'NR == 1 { print $4 }')" \
     --jump REJECT
