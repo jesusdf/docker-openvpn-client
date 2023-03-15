@@ -1,6 +1,6 @@
 services:
   openvpn-client:
-    image: ghcr.io/jesusdf/openvpn-client:latest
+    image: jesusdf/docker-openvpn-client:latest
     container_name: openvpn-client
     cap_add:
       - NET_ADMIN
