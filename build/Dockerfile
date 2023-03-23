@@ -8,7 +8,8 @@ RUN apk add --no-cache \
               openvpn \
     && rm -f  /sbin/apk \
               /usr/bin/wget \
-              /usr/sbin/sendmail
+              /usr/sbin/sendmail \
+              /usr/bin/nc
 
 COPY . /usr/local/bin
 
