@@ -6,6 +6,7 @@ RUN apk add --no-cache \
               iptables \
               ip6tables \
               openvpn \
+              tzdata \
     && rm -f  /sbin/apk \
               /usr/bin/wget \
               /usr/sbin/sendmail \

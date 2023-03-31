@@ -54,6 +54,9 @@ services:
       - NET_ADMIN
     devices:
       - /dev/net/tun
+    environment:
+      - TZ=Europe/Madrid
+      - ALLOWED_SUBNETS=192.168.10.0/24
     volumes:
       - <path/to/config/dir>:/config
     restart: unless-stopped
@@ -62,6 +65,7 @@ services:
 #### Environment variables
 | Variable | Default (blank is unset) | Description |
 | --- | --- | --- |
+| `TZ` | | Timezone information. |
 | `ALLOWED_SUBNETS` | | A list of one or more comma-separated subnets (e.g. `192.168.0.0/24,192.168.1.0/24`) to allow outside of the VPN tunnel. |
 | `AUTH_SECRET` | | Docker secret that contains the credentials for accessing the VPN. |
 | `CONFIG_FILE` | | The OpenVPN configuration file or search pattern. If unset, a random `.conf` or `.ovpn` file will be selected. |
