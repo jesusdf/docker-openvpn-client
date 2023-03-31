@@ -27,6 +27,8 @@ fi
 
 echo "using openvpn configuration file: $config_file"
 
+cp /usr/share/zoneinfo/${TZ} /etc/localtime
+echo "${TZ}" >  /etc/timezone
 
 openvpn_args=(
     "--config" "$config_file"
