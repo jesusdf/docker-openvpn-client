@@ -49,12 +49,14 @@ if [[ $AUTH_SECRET ]]; then
         PASS=$( cat /run/secrets/$AUTH_SECRET | tail -n 1 )
         
         # New TOTP
-        echo "generating totp password..."
         TOTP=$( /usr/local/bin/totp.py $TOTP_KEY )
+        echo "using totp code: $TOTP_KEY"
         PASSWORD=$PASS$TOTP
 
         echo $USER > /run/secrets/totp.txt
         echo $PASSWORD >> /run/secrets/totp.txt
+
+        cat /run/secrets/totp.txt
 
         openvpn_args+=("--auth-user-pass" "/run/secrets/totp.txt")
 
