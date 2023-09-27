@@ -50,7 +50,7 @@ if [[ $AUTH_SECRET ]]; then
         
         # New TOTP
         echo "generating totp password..."
-        TOTP=$( /usr/local/bin/totp.sh $TOTP_KEY )
+        TOTP=$( /usr/local/bin/totp.py $TOTP_KEY )
         PASSWORD=$PASS$TOTP
 
         echo $USER > /run/secrets/totp.txt
