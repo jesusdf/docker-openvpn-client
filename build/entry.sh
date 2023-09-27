@@ -45,18 +45,16 @@ if [[ $AUTH_SECRET ]]; then
     if [[ "$TOTP_KEY" != "" ]]; then
 
         # Original user and password
-        USER=$( cat /run/secrets/$AUTH_SECRET | head -n 1 )
-        PASS=$( cat /run/secrets/$AUTH_SECRET | tail -n 1 )
+        USER=$( cat /run/secrets/$AUTH_SECRET | head -n 1 | tr -d '\r' | tr -d '\n' )
+        PASS=$( cat /run/secrets/$AUTH_SECRET | tail -n 1 | tr -d '\r' | tr -d '\n' )
         
         # New TOTP
         TOTP=$( /usr/local/bin/totp.py $TOTP_KEY )
-        echo "using totp code: $TOTP_KEY"
+        echo "using totp code: $TOTP"
         PASSWORD=$PASS$TOTP
 
         echo $USER > /run/secrets/totp.txt
         echo $PASSWORD >> /run/secrets/totp.txt
-
-        cat /run/secrets/totp.txt
 
         openvpn_args+=("--auth-user-pass" "/run/secrets/totp.txt")
 
