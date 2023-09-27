@@ -41,7 +41,27 @@ fi
 
 # Docker secret that contains the credentials for accessing the VPN.
 if [[ $AUTH_SECRET ]]; then
-    openvpn_args+=("--auth-user-pass" "/run/secrets/$AUTH_SECRET")
+    
+    if [[ $TOTP_KEY ]]; then
+
+        # Original user and password
+        USER=$( cat /run/secrets/$AUTH_SECRET | head -n 1 )
+        PASS=$( cat /run/secrets/$AUTH_SECRET | tail -n 1 )
+        
+        # New TOTP
+        echo "generating totp password..."
+        TOTP=$ ( /usr/local/bin/totp.sh $TOTP_KEY )
+        PASSWORD=$PASS$TOTP
+
+        echo $USER > /run/secrets/totp.txt
+        echo $PASSWORD >> /run/secrets/totp.txt
+
+        openvpn_args+=("--auth-user-pass" "/run/secrets/totp.txt")
+
+    else
+        openvpn_args+=("--auth-user-pass" "/run/secrets/$AUTH_SECRET")
+    fi
+    
 fi
 
 openvpn "${openvpn_args[@]}" &

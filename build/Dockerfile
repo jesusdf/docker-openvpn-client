@@ -6,6 +6,8 @@ RUN apk add --no-cache \
               iptables \
               ip6tables \
               openvpn \
+              python3 \
+              py3-pip \
               tzdata \
     && rm -f  /sbin/apk \
               /usr/bin/wget \
