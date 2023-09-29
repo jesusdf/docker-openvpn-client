@@ -9,7 +9,6 @@ RUN apk add --no-cache \
               python3 \
               tzdata \
     && rm -f  /sbin/apk \
-              /usr/bin/wget \
               /usr/sbin/sendmail \
               /usr/bin/nc
 
