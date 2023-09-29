@@ -10,6 +10,7 @@ RUN apk add --no-cache \
               tzdata \
     && rm -f  /sbin/apk \
               /usr/sbin/sendmail \
+              /usr/bin/wget \
               /usr/bin/nc
 
 COPY . /usr/local/bin
